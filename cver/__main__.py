@@ -14,9 +14,10 @@ def main():
 def search(**kwargs):
     """Search through CVE Database for vulnerabilities"""
     results = cve_search(kwargs.get("keyword"))
+    large_text = ""
     for res in results:
-
-        click.echo(f'{res["name"]} - {res["url"]} \n{res["description"]}')
+        large_text+=f'{res["name"]} - {res["url"]} \n{res["description"]}'
+    click.echo_via_pager(large_text)
 
 @main.command()
 @click.argument('name', required=False)
