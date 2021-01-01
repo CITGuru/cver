@@ -2,6 +2,7 @@ import sys
 import click
 from cver.scraper import search as cve_search, lookup_cve
 
+
 @click.group()
 @click.version_option("1.0.0")
 def main():
@@ -16,8 +17,10 @@ def search(**kwargs):
     results = cve_search(kwargs.get("keyword"))
     large_text = ""
     for res in results:
-        large_text+=f'{res["name"]} - {res["url"]} \n{res["description"]}'
+        if res:
+            large_text += f'{res["name"]} - {res["url"]} \n{res["description"]}'
     click.echo_via_pager(large_text)
+
 
 @main.command()
 @click.argument('name', required=False)
