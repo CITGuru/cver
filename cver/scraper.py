@@ -58,6 +58,3 @@ def lookup_cve(name):
             raw_results[subtitle.lower()] = description
 
     return raw_results
-
-
-print(search("python"))
